@@ -1,0 +1,31 @@
+{
+  "name": "sabre",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/sabre.js",
+  "scripts": {
+    "build": "babel src -d dist && node test/test.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [],
+  "author": "hmmhmmhm",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "react-devtools-core": "^3.6.0"
+  },
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "chalk": "^2.4.2",
+    "folder-logger": "^1.0.0",
+    "parse-color": "^1.0.0",
+    "react": "^16.8.1",
+    "react-blessed": "^0.5.0"
+  }
+}

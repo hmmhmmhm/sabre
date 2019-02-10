@@ -40,7 +40,7 @@
 
   function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-  var themeColor = (0, _parseColor.default)('green').hex;
+  var themeColor = (0, _parseColor.default)('magenta').hex;
   /**
    * stylesheet
    */
@@ -62,10 +62,35 @@
 
   };
 
-  var Dashboard =
+  var Dash =
   /*#__PURE__*/
   function (_Component) {
-    _inherits(Dashboard, _Component);
+    _inherits(Dash, _Component);
+
+    function Dash() {
+      _classCallCheck(this, Dash);
+
+      return _possibleConstructorReturn(this, _getPrototypeOf(Dash).apply(this, arguments));
+    }
+
+    _createClass(Dash, [{
+      key: "render",
+      value: function render() {
+        return _react.default.createElement("element", null, _react.default.createElement("box", null, _react.default.createElement(Log, null), _react.default.createElement(Command, null), _react.default.createElement(Detail, null), _react.default.createElement(System, null)));
+      }
+    }]);
+
+    return Dash;
+  }(_react.Component);
+  /**
+   * Top level component.
+   */
+
+
+  var Dashboard =
+  /*#__PURE__*/
+  function (_Component2) {
+    _inherits(Dashboard, _Component2);
 
     function Dashboard() {
       _classCallCheck(this, Dashboard);
@@ -89,8 +114,8 @@
 
   var Log =
   /*#__PURE__*/
-  function (_Component2) {
-    _inherits(Log, _Component2);
+  function (_Component3) {
+    _inherits(Log, _Component3);
 
     function Log() {
       _classCallCheck(this, Log);
@@ -119,8 +144,8 @@
 
   var Command =
   /*#__PURE__*/
-  function (_Component3) {
-    _inherits(Command, _Component3);
+  function (_Component4) {
+    _inherits(Command, _Component4);
 
     function Command() {
       _classCallCheck(this, Command);
@@ -149,8 +174,8 @@
 
   var Detail =
   /*#__PURE__*/
-  function (_Component4) {
-    _inherits(Detail, _Component4);
+  function (_Component5) {
+    _inherits(Detail, _Component5);
 
     function Detail() {
       _classCallCheck(this, Detail);
@@ -180,8 +205,8 @@
 
   var System =
   /*#__PURE__*/
-  function (_Component5) {
-    _inherits(System, _Component5);
+  function (_Component6) {
+    _inherits(System, _Component6);
 
     function System() {
       _classCallCheck(this, System);
@@ -211,8 +236,8 @@
 
   var State =
   /*#__PURE__*/
-  function (_Component6) {
-    _inherits(State, _Component6);
+  function (_Component7) {
+    _inherits(State, _Component7);
 
     function State() {
       _classCallCheck(this, State);
@@ -237,23 +262,51 @@
     return State;
   }(_react.Component);
 
-  var Form = function Form() {
-    _classCallCheck(this, Form);
+  var Form =
+  /*#__PURE__*/
+  function () {
+    function Form() {
+      var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    /**
-     * Rendering the screen.
-     */
-    var screen = _blessed.default.screen({
-      autoPadding: true,
-      smartCSR: true,
-      title: 'react-blessed dashboard'
-    });
+      _classCallCheck(this, Form);
 
-    screen.key(['escape', 'q', 'C-c'], function (ch, key) {
-      return process.exit(0);
-    });
-    (0, _reactBlessed.render)(_react.default.createElement(Dashboard, null), screen);
-  };
+      this.screen = null;
+      this.open(option);
+    }
+
+    _createClass(Form, [{
+      key: "open",
+      value: function open(option) {
+        if (this.screen !== null) return;
+        /**
+         * Rendering the screen.
+         */
+
+        this.screen = _blessed.default.screen({
+          autoPadding: true,
+          smartCSR: true,
+          title: option.title || 'Sabre CLI'
+        });
+        this.screen.key(['escape', 'q', 'C-c'], function (ch, key) {
+          return process.exit(0);
+        });
+        (0, _reactBlessed.render)(_react.default.createElement(Dashboard, null), this.screen);
+      }
+    }, {
+      key: "close",
+      value: function close() {
+        if (this.screen === null) return;
+        this.screen.destroy();
+      }
+    }, {
+      key: "isOpened",
+      value: function isOpened() {
+        return this.screen !== null;
+      }
+    }]);
+
+    return Form;
+  }();
 
   module.exports = Form;
 });
